@@ -142,10 +142,8 @@ class DoublyLinkedList():
                 else:  # case 2
                     nxt = current.next
                     current.next = None
-                    current = None
                     self.head = nxt
                     return
-
             elif current == node:  # case 3
                 if current.next:
                     nxt = current.next
@@ -154,7 +152,6 @@ class DoublyLinkedList():
                     nxt.prev = prv
                     current.next = None
                     current.prev = None
-                    current = None
                     return
                 else:
                     prv = current.prev
@@ -232,6 +229,16 @@ class DoublyLinkedList():
 
 dll = DoublyLinkedList()
 
-if not dll.printList():
-    print("The List is Empty!")
+dll.append(10)
+dll.append(20)
+dll.append(20)
+dll.append(30)
+dll.append(40)
+dll.append(30)
+dll.append(50)
+
+dll.printList()
+dll.removeDuplicates()
+print()
+dll.reversed()
 dll.printList()

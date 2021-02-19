@@ -9,7 +9,6 @@
 #9. removeAt()
 #10 removeAll()
 
-
 class Node:
     def __init__(self, data):
         self.data = data
@@ -19,7 +18,6 @@ class LinkedList:
     def __init__(self,):
         self.first = None
         self.last = None
-
 
     def printLinkedList(self):
         if self.first is self.last is None:
@@ -55,7 +53,7 @@ class LinkedList:
         while current:
             if current.data == dataAfter:
                 prv = self.__getPrevious(self.last)
-                prv.next = newNode
+                prv.next  = newNode
                 newNode.next = current
             current = current.next
 
