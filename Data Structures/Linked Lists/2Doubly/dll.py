@@ -238,7 +238,5 @@ dll.append(30)
 dll.append(50)
 
 dll.printList()
-dll.removeDuplicates()
 print()
-dll.reversed()
-dll.printList()
+print(dll.pairsWithSum(60))

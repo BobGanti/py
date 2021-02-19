@@ -240,6 +240,17 @@ class CircularDLL:
             current = next
         self.head = prev
 
+    def pairsWithSum(self, target):
+        pairs = []
+        p1 = self.head
+        while p1 != self.tail:
+            p2 = p1.next
+            while p2 != self.head:
+                if p1.data + p2.data == target:
+                    pairs.append([p1.data, p2.data])
+                p2 = p2.next
+            p1 = p1.next
+        return pairs
 
     def __lengthLl(self):
         return self.indexOf(self.tail.data)+1
@@ -272,7 +283,8 @@ cdll.append(50)
 
 cdll.printList()
 print()
-cdll.reversedLl()
+print(cdll.pairsWithSum(60))
+#dll.reversedLl()
 cdll.printList()
 
 
