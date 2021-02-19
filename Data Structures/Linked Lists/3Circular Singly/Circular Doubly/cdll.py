@@ -1,5 +1,5 @@
-#1. addFirst()
-#2. addLast()
+#1. prepend()
+#2. append()
 #3. addBefore(data1, data2);
 #3. addAfter(data1, data2);
 #4. indexOf(data)
@@ -108,6 +108,33 @@ class CircularDLL:
         newNode.prev= curr
         newNode.next = tmp
 
+    def indexOf(self, data):
+        index = 0
+        current = self.head
+        while current:
+            if current.data == data:
+                return index
+            current = current.next
+            index += 1
+        return -1
+
+    def contains(self, data):
+        return self.indexOf(data) != -1
+
+    def removeFirst(self):
+        if self.__isEmptyList():
+            return -1
+        if self.head == self.tail:
+            self.head = self.tail = None
+            return
+        nxt = self.head.next
+        prv = self.head.prev
+        self.head.next = None
+        self.head.prev = None
+        nxt.prev = prv
+        prv.next = nxt
+        self.head = nxt
+
     def __getPrevious(self, node):
         current = self.head
         while current:
@@ -130,14 +157,23 @@ class CircularDLL:
 cdll = CircularDLL()
 cdll.append(1)
 cdll.append(2)
-cdll.addBefore(1, 4)
+cdll.append(3)
+cdll.append(5)
+cdll.addBefore(5, 4)
 
 cdll.printList()
 print()
-if cdll.head:
-    print("Head: ", cdll.head.data)
-    print("Head.Next: ", cdll.head.next.data)
-    print("Head.Prev: ", cdll.head.prev.data)
-    print("Tail: ", cdll.tail.data)
-    print("Tail.Next: ", cdll.tail.next.data)
-    print("Tail.Prev: ", cdll.tail.prev.data)
+print("Index of 5: ", cdll.indexOf(5))
+print("Contains 5: ", cdll.contains(5))
+cdll.removeFirst()
+
+cdll.printList()
+
+print()
+print("Head: ", cdll.head.data)
+print("Head.Next: ", cdll.head.next.data)
+print("Head.Prev: ", cdll.head.prev.data)
+print("Tail: ", cdll.tail.data)
+print("Tail.Next: ", cdll.tail.next.data)
+print("Tail.Prev: ", cdll.tail.prev.data)
+
