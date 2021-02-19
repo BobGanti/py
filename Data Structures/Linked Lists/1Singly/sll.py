@@ -26,7 +26,7 @@ class LinkedList:
             print("linked list is empty")
         else:
             current = self.first
-            while current is not None:
+            while current:
                 print(current.data, "=>", end=" ")
                 current = current.next
 
