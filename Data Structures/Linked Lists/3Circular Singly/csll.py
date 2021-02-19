@@ -56,17 +56,16 @@ class CircularSLL:
         if self.__isEmptyList():
             return
         newNode = Node(data)
-        if self.head == self.tail and self.head.data == dataAfter:
+        if self.head.data == dataAfter:
             self.prepend(data)
             return
         current = self.head
-        while current:
+        while current.next != self.head:
             if current.data == dataAfter:
-                break
+                prev = self.__getPrevious(current)
+                prev.next = newNode
+                newNode.next = current
             current = current.next
-        prev = self.__getPrevious(current)
-        prev.next = newNode
-        newNode.next = current
 
     def addAfter(self, dataBefore, data):
         if self.__isEmptyList():
@@ -96,11 +95,7 @@ class CircularSLL:
 
 csll = CircularSLL()
 csll.prepend(2)
-
-csll.printList()
-print()
 csll.addBefore(2, 13)
-csll.addAfter(2, 7)
 
 csll.printList()
-print()
+

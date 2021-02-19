@@ -59,6 +59,30 @@ class CircularDLL:
             self.tail.next = newNode
             self.tail = newNode
 
+    def addBefore(self, dataAfter, data):
+        if self.__isEmptyList():
+            return
+        newNode = Node(data)
+        if self.head.data == dataAfter:
+            self.prepend(data)
+            return
+        current = self.head
+        while current.next != self.head:
+            if current.data == dataAfter:
+                prv = self.__getPrevious(current)
+                prv.next = newNode
+                current.prev = newNode
+                newNode.next = current
+                newNode.prev = prv
+            current = current.next
+
+    def __getPrevious(self, node):
+        current = self.head
+        while current:
+            if current.next == node:
+                return current
+            current = current.next
+
     def __isEmptyList(self):
         return self.head == None
 
@@ -72,17 +96,16 @@ class CircularDLL:
         return colorDict[color]
 
 cdll = CircularDLL()
-cdll.append(5)
-cdll.append(4)
-cdll.append(3)
-cdll.append(2)
 cdll.append(1)
+
+cdll.addBefore(1, 4)
 
 cdll.printList()
 print()
-print("Head: ", cdll.head.data)
-print("Head.Next: ", cdll.head.next.data)
-print("Head.Prev: ", cdll.head.prev.data)
-print("Tail: ", cdll.tail.data)
-print("Tail.Next: ", cdll.tail.next.data)
-print("Tail.Prev: ", cdll.tail.prev.data)
+if cdll.head:
+    print("Head: ", cdll.head.data)
+    print("Head.Next: ", cdll.head.next.data)
+    print("Head.Prev: ", cdll.head.prev.data)
+    print("Tail: ", cdll.tail.data)
+    print("Tail.Next: ", cdll.tail.next.data)
+    print("Tail.Prev: ", cdll.tail.prev.data)
