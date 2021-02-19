@@ -46,55 +46,6 @@ class CircularDLL:
             self.tail.next = newNode
             self.head = newNode
 
-    # def append(self, data):
-    #     newNode = Node(data)
-    #     if self.__isEmptyList():
-    #         self.head = self.tail = newNode
-    #         self.head.next = self.tail.next = self.head
-    #     else:
-    #         newNode.next = self.head
-    #         self.tail.next = newNode
-    #         self.tail = newNode
-    #
-    # def addBefore(self, dataAfter, data):
-    #     if self.__isEmptyList():
-    #         return
-    #     newNode = Node(data)
-    #     if self.head == self.tail and self.head.data == dataAfter:
-    #         self.prepend(data)
-    #         return
-    #     current = self.head
-    #     while current:
-    #         if current.data == dataAfter:
-    #             break
-    #         current = current.next
-    #     prev = self.__getPrevious(current)
-    #     prev.next = newNode
-    #     newNode.next = current
-    #
-    # def addAfter(self, dataBefore, data):
-    #     if self.__isEmptyList():
-    #         return
-    #     newNode = Node(data)
-    #     if self.head == self.tail and self.head.data == dataBefore:
-    #         self.append(data)
-    #         return
-    #     curr = self.head
-    #     while curr:
-    #         if curr.data == dataBefore:
-    #             break
-    #         curr = curr.next
-    #     tmp = curr.next
-    #     curr.next = newNode
-    #     newNode.next = tmp
-    #
-    # def __getPrevious(self, node):
-    #     current = self.head
-    #     while current:
-    #         if current.next == node:
-    #             return current
-    #         current = current.next
-    #
     def __isEmptyList(self):
         return self.head == None
 
