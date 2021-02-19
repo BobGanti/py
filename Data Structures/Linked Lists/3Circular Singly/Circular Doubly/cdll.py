@@ -7,6 +7,7 @@
 #6. removeFirst()
 #7. removeLast()
 #8. removeAt(data)
+#8. removeAt(node)
 #9. removeDuplicates()
 #10. reverse()
 #11. pairsWithSum()
@@ -135,6 +136,47 @@ class CircularDLL:
         prv.next = nxt
         self.head = nxt
 
+    def removeLast(self):
+        if self.__isEmptyList():
+            return -1
+        if self.head == self.tail:
+            self.head = self.tail = None
+            return
+        previous = self.__getPrevious(self.tail)
+        head = self.tail.next
+        self.tail.prev = None
+        self.tail.next = None
+        previous.next = head
+        self.head.prev = previous
+        self.tail = previous
+
+    def rmoveWithData(self, data):
+        if self.__isEmptyList():
+            return -1
+        if self.head.data == data:
+            if self.head == self.tail:  # delete head node with only 1 node in list
+                self.head = self.tail = None
+            else:   # delete head node with at least 2 nodes in list
+                nxt = self.head.next
+                prv = self.head.prev
+                self.head.prev = None
+                self.head.next = None
+                nxt.prev = prv
+                prv.next = nxt
+                self.head = nxt
+            return
+        curr = self.head
+        while curr.next != self.head:
+            if curr.data == data:
+                break
+            curr = curr.next
+        prv = self.__getPrevious(curr)
+        nxt = curr.next
+        curr.next = None
+        curr.prev = None
+        prv.next = nxt
+        nxt.prev = prv
+
     def __getPrevious(self, node):
         current = self.head
         while current:
@@ -158,22 +200,24 @@ cdll = CircularDLL()
 cdll.append(1)
 cdll.append(2)
 cdll.append(3)
+cdll.append(4)
 cdll.append(5)
-cdll.addBefore(5, 4)
+cdll.append(3)
+
 
 cdll.printList()
 print()
-print("Index of 5: ", cdll.indexOf(5))
-print("Contains 5: ", cdll.contains(5))
-cdll.removeFirst()
+cdll.rmoveWithData(3)
+cdll.rmoveWithData(2)
 
 cdll.printList()
 
-print()
-print("Head: ", cdll.head.data)
-print("Head.Next: ", cdll.head.next.data)
-print("Head.Prev: ", cdll.head.prev.data)
-print("Tail: ", cdll.tail.data)
-print("Tail.Next: ", cdll.tail.next.data)
-print("Tail.Prev: ", cdll.tail.prev.data)
+if cdll.head:
+    print()
+    print("Head: ", cdll.head.data)
+    print("Head.Next: ", cdll.head.next.data)
+    print("Head.Prev: ", cdll.head.prev.data)
+    print("Tail: ", cdll.tail.data)
+    print("Tail.Next: ", cdll.tail.next.data)
+    print("Tail.Prev: ", cdll.tail.prev.data)
 

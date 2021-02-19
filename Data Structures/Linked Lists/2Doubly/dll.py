@@ -114,7 +114,6 @@ class DoublyLinkedList():
                     current = None
                     self.head = nxt
                     return
-
             elif current.data == data:  # case 3
                 if current.next:
                     nxt = current.next
