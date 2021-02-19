@@ -94,8 +94,9 @@ class CircularSLL:
         return self.head == None
 
 csll = CircularSLL()
-csll.prepend(2)
-csll.addBefore(2, 13)
+csll.append(1)
+csll.append(2)
+csll.addAfter(1, 13)
 
 csll.printList()
 

@@ -52,6 +52,7 @@ class CircularDLL:
             self.head = self.tail = newNode
             self.head.next = self.tail.next = self.head
             self.head.prev = self.tail.prev = self.head
+
         else:
             newNode.next = self.head
             newNode.prev =self.tail
@@ -62,19 +63,50 @@ class CircularDLL:
     def addBefore(self, dataAfter, data):
         if self.__isEmptyList():
             return
-        newNode = Node(data)
+
         if self.head.data == dataAfter:
             self.prepend(data)
             return
+
+        newNode = Node(data)
         current = self.head
         while current.next != self.head:
             if current.data == dataAfter:
-                prv = self.__getPrevious(current)
-                prv.next = newNode
-                current.prev = newNode
-                newNode.next = current
-                newNode.prev = prv
+                break
             current = current.next
+        prv = self.__getPrevious(current)
+        prv.next = newNode
+        current.prev = newNode
+        newNode.next = current
+        newNode.prev = prv
+
+
+    def addAfter(self, dataBefore, data):
+        if self.__isEmptyList():
+            return
+
+        newNode = Node(data)
+        if self.head.data == dataBefore:
+            if self.head == self.tail:  # /* only 1 node in list
+                self.append(data)
+            else:   # /* at least 2 nodes in list
+                temp = self.head.next
+                self.head.next = newNode
+                newNode.prev = self.head
+                temp.prev = newNode
+                newNode.next = temp
+            return
+
+        curr = self.head
+        while curr.next != self.head:
+            if curr.data == dataBefore:
+                break
+            curr = curr.next
+        tmp = curr.next
+        curr.next = newNode
+        tmp.prev = newNode
+        newNode.prev= curr
+        newNode.next = tmp
 
     def __getPrevious(self, node):
         current = self.head
@@ -97,7 +129,7 @@ class CircularDLL:
 
 cdll = CircularDLL()
 cdll.append(1)
-
+cdll.append(2)
 cdll.addBefore(1, 4)
 
 cdll.printList()
