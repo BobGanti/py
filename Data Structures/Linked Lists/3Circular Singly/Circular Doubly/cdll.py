@@ -46,6 +46,19 @@ class CircularDLL:
             self.tail.next = newNode
             self.head = newNode
 
+    def append(self, data):
+        newNode = Node(data)
+        if self.__isEmptyList():
+            self.head = self.tail = newNode
+            self.head.next = self.tail.next = self.head
+            self.head.prev = self.tail.prev = self.head
+        else:
+            newNode.next = self.head
+            newNode.prev =self.tail
+            self.head.prev = newNode
+            self.tail.next = newNode
+            self.tail = newNode
+
     def __isEmptyList(self):
         return self.head == None
 
@@ -59,11 +72,11 @@ class CircularDLL:
         return colorDict[color]
 
 cdll = CircularDLL()
-cdll.prepend(5)
-cdll.prepend(4)
-cdll.prepend(3)
-cdll.prepend(2)
-cdll.prepend(1)
+cdll.append(5)
+cdll.append(4)
+cdll.append(3)
+cdll.append(2)
+cdll.append(1)
 
 cdll.printList()
 print()
