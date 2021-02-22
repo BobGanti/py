@@ -163,14 +163,14 @@ class DoublyLinkedList():
 
     def removeDuplicates(self):
         current = self.head
-        seenList = dict()
+        checklist = []
         while current:
-            if current.data not in seenList:
-                seenList[current.data] = 1
+            if current.data not in checklist:
+                checklist.append(current.data)
                 current = current.next
             else:
                 nxt = current.next
-                self.removeWithNode(current)
+                self.removeWithData(current.data)
                 current = nxt
 
     def reversed(self):
@@ -236,7 +236,10 @@ dll.append(30)
 dll.append(40)
 dll.append(30)
 dll.append(50)
+dll.append(50)
+dll.append(50)
 
 dll.printList()
 print()
-print(dll.pairsWithSum(60))
+dll.removeDuplicates()
+dll.printList()
